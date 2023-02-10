@@ -1,0 +1,34 @@
+:root {
+  /*
+  buttons panel
+  */
+  --buttons-panel-background-color: #a5a5a5;
+  --buttons-panel-border: 4px solid grey;
+  --buttons-panel-shadow: 0px 0px 25px 0px rgba(0 0 0 / 28.1%);
+  --button-background-color: #607d8b;
+  --get-change-button-color: #00bfa5;
+
+  /*
+  fullscreen toggler
+  */
+  --toggle-button-background-color: rgba(255 255 255 / 60.3%);
+
+  /*
+  product card
+  */
+  --divider: 1px solid black;
+
+  /*
+  user bar
+  */
+  --user-bar-shadow: 0px 0px 25px 0px rgba(0 0 0 / 28.1%);
+  --user-bar-border: 4px solid grey;
+  --user-bar-background-color: #78909c;
+  --display-shadow: inset 0px 0px 10px 0px rgba(0 0 0 / 9.6%);
+  --display-background: #263238;
+
+  /*
+  vending machine
+  */
+  --vending-machine-background-color: aliceblue;
+}

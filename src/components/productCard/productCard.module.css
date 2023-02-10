@@ -1,0 +1,20 @@
+.productImage {
+  height: 100px;
+  background-size: contain !important;
+}
+
+.productCard {
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 200px;
+  padding: 5px;
+}
+
+.cardContent p {
+  font-family: 'Caveat', sans-serif;
+  font-size: 25px;
+}
+
+.cardContent p:not(:last-child) {
+  border-bottom: var(--divider);
+}

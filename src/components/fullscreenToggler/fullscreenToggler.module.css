@@ -1,0 +1,11 @@
+.toggleButtonIcon {
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  padding: 0 !important;
+}
+
+.toggleButtonIcon:hover {
+  background-color: var(--toggle-button-background-color);
+  opacity: 1;
+}

@@ -1,0 +1,25 @@
+.productsBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 290px;
+  width: 50%;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+@media screen and (max-width: 580px) {
+  .productsBar {
+    width: 100%;
+    overflow-y: visible;
+  }
+}
+
+.productsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 960px;
+  max-height: 100%;
+}

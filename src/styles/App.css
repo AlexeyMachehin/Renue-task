@@ -1,0 +1,28 @@
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+.display {
+  width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: var(--display-shadow);
+  background-color: var(--display-background);
+  color: var(--get-change-button-color);
+  line-height: 22px;
+}
+
+.display p {
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P', sans-serif;
+}
+

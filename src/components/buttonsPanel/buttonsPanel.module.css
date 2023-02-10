@@ -1,0 +1,36 @@
+.buttonsPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  padding: 10px;
+  border: var(--buttonsPanelBorder);
+  border-radius: 10px;
+  box-shadow: var(--buttons-panel-shadow);
+  background-color: var(--buttons-panel-background-color);
+}
+
+.buttons button {
+  background-color: var(--button-background-color);
+  margin: 5px;
+}
+
+.buttons button:not(:last-child) {
+  margin-right: 5px;
+}
+
+.buttonsTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+  font-family: 'Press Start 2P', sans-serif;
+  min-height: 35px;
+  padding: 0 5px;
+}
+
+.getChangeButton {
+  background-color: var(--get-change-button-color) !important;
+}
