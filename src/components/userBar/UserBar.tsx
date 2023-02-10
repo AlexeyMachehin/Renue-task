@@ -75,6 +75,9 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
   }
 
   function handleClickGetChange(): void {
+    setMoneyChange([]);
+    setProductChange([]);
+
     if (!boughtProduct) {
       setChangeAlert(depositedMoney);
       setDepositedMoney(0);
@@ -121,6 +124,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
       );
     }
     setDepositedMoney(0);
+    setBoughtProduct(null);
   }
 
   function handleClickProduct(product: Product): void {
