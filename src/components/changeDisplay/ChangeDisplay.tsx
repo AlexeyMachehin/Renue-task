@@ -21,7 +21,7 @@ export default function ChangeDisplay({
         {moneyChange &&
           moneyChange.map((banknote: Banknote) => (
             <p key={banknote.id}>
-              {banknote.denomination} X {banknote.count}
+              {`${banknote.denomination} руб.`} X {banknote.count}
             </p>
           ))}
       </div>

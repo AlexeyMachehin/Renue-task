@@ -3,7 +3,7 @@ import BalanceDisplay from '../balanceDisplay/BalanceDisplay';
 import ChangeDisplay from '../changeDisplay/ChangeDisplay';
 import ButtonsPanel from '../buttonsPanel/ButtonsPanel';
 import { Product } from '../../types/products';
-import { Banknote } from '../../types/banknote';
+import { Banknote, BanknotesOmitCount } from '../../types/banknote';
 import { availableBanknotesForChange } from '../../mockData/availableBanknotesForChange';
 import classes from './userBar.module.css';
 interface UserBarProps {
@@ -21,16 +21,24 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
   const [productChange, setProductChange] = useState<Product[]>([]);
   const [changeAlert, setChangeAlert] = useState<string | number>('');
 
-  function handleClickBanknote(clickedBanknoteDenomination: number): void {
-    const updatedAvailableNotes = [...availableNotes];
-    updatedAvailableNotes.forEach((banknote: Banknote) => {
-      if (banknote.denomination === clickedBanknoteDenomination) {
-        const count = banknote.count + 1;
-        return { ...banknote, count };
-      }
-    });
+  function reset() {
+    setMoneyChange([]);
+    setProductChange([]);
+    setChangeAlert('');
+  }
+
+  function handleClickBanknote(clickedBanknote: BanknotesOmitCount): void {
+    const updatedAvailableNotes = availableNotes.map(
+      (banknote: Banknote) => {
+        if (banknote.denomination === clickedBanknote.denomination) {
+          const count = banknote.count + 1;
+          return { ...banknote, count };
+        }
+        return banknote;
+      },
+    );
     setAvailableNotes(updatedAvailableNotes);
-    setDepositedMoney(depositedMoney + clickedBanknoteDenomination);
+    setDepositedMoney(depositedMoney + clickedBanknote.denomination);
   }
 
   function countingChange<T extends { count: number }>(
@@ -75,11 +83,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
   }
 
   function handleClickGetChange(): void {
-    if (!boughtProduct) {
-      setChangeAlert(depositedMoney);
-      setDepositedMoney(0);
-      return;
-    }
+    reset();
 
     const change = countingChange<Banknote>(
       depositedMoney,
@@ -88,45 +92,46 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
     );
 
     const updatedBanknotes = getUpdatedItems<Banknote>(availableNotes, change);
+
     const sumOfMoneyChange = change.reduce(
-      (sum, current) => (sum += current.denomination),
+      (sum, current) => (sum += (current.denomination * current.count)),
       0,
     );
-
     const changeOfProducts = countingChange<Product>(
       depositedMoney - sumOfMoneyChange,
       products,
       'price',
     );
 
-    const SumOfProductChange = changeOfProducts.reduce(
-      (sum, current) => (sum += current.price),
+    const sumOfProductChange = changeOfProducts.reduce(
+      (sum, current) => (sum += (current.price * current.count)),
       0,
     );
 
     const updatedProduct = getUpdatedItems<Product>(products, changeOfProducts);
+
     setProducts(updatedProduct);
     setProductChange(changeOfProducts);
     setAvailableNotes(updatedBanknotes);
     setMoneyChange(change);
+    setDepositedMoney(0);
+    setBoughtProduct(null);
 
-    if (
-      sumOfMoneyChange < depositedMoney ||
-      SumOfProductChange + sumOfMoneyChange === 0
-    ) {
+    if (sumOfMoneyChange + sumOfProductChange < depositedMoney) {
       setChangeAlert(
         `Извините, нет сдачи, позвоните по номеру: 88005677453 и мы вернем вам ${
-          depositedMoney - sumOfMoneyChange - SumOfProductChange
+          depositedMoney - sumOfMoneyChange - sumOfProductChange
         } руб.`,
       );
     }
-    setDepositedMoney(0);
   }
 
   function handleClickProduct(product: Product): void {
+    reset();
     const updatedProducts = getUpdatedItems(products, [
       { ...product, count: 1 },
     ]);
+
     setProducts(updatedProducts);
     setDepositedMoney(depositedMoney - product.price);
     setBoughtProduct(product);
