@@ -5,7 +5,9 @@ import { availableBanknotesForEnter } from '../../mockData/availableBanknotesFor
 import { BanknotesOmitCount } from '../../types/banknote';
 import classes from './buttonsPanel.module.css';
 interface ButtonsPanelProps {
-  handleClickBanknote: (clickedBanknoteDenomination: number) => void;
+  handleClickBanknote: (
+    clickedBanknoteDenomination: BanknotesOmitCount,
+  ) => void;
   depositedMoney: number;
   products: Product[];
   handleClickProduct: (product: Product) => void;
@@ -27,7 +29,7 @@ export default function ButtonsPanel({
           <Button
             key={banknote.id}
             variant="contained"
-            onClick={() => handleClickBanknote(banknote.denomination)}>
+            onClick={() => handleClickBanknote(banknote)}>
             {`${banknote.denomination} руб.`}
           </Button>
         ))}
