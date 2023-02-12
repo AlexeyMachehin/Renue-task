@@ -5,19 +5,19 @@ import { availableBanknotesForEnter } from '../../mockData/availableBanknotesFor
 import { BanknotesOmitCount } from '../../types/banknote';
 import classes from './buttonsPanel.module.css';
 interface ButtonsPanelProps {
+  depositedMoney: number;
+  products: Product[];
   handleClickBanknote: (
     clickedBanknoteDenomination: BanknotesOmitCount,
   ) => void;
-  depositedMoney: number;
-  products: Product[];
   handleClickProduct: (product: Product) => void;
   handleClickGetChange: () => void;
 }
 
 export default function ButtonsPanel({
-  handleClickBanknote,
   depositedMoney,
   products,
+  handleClickBanknote,
   handleClickProduct,
   handleClickGetChange,
 }: ButtonsPanelProps) {
@@ -25,7 +25,7 @@ export default function ButtonsPanel({
     <div className={classes.buttonsPanel}>
       <div className={classes.buttons}>
         <p className={classes.buttonsTitle}>Внесите купюры:</p>
-        {availableBanknotesForEnter.map((banknote: BanknotesOmitCount) => (
+        {availableBanknotesForEnter.map(banknote => (
           <Button
             key={banknote.id}
             variant="contained"
@@ -41,7 +41,7 @@ export default function ButtonsPanel({
               ? 'Выберите товар:'
               : 'Пополните баланс, затем выберите товар'}
           </p>
-          {products.map((product: Product) => (
+          {products.map(product => (
             <Tooltip
               key={product.id}
               title={`${product.name} ${
@@ -71,7 +71,7 @@ export default function ButtonsPanel({
         <Button
           className={classes.getChangeButton}
           variant="contained"
-          onClick={() => handleClickGetChange()}>
+          onClick={handleClickGetChange}>
           Получить сдачу
         </Button>
       </div>
