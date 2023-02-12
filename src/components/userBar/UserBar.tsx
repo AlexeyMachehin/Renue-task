@@ -30,15 +30,13 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
   }
 
   function handleClickBanknote(clickedBanknote: BanknotesOmitCount): void {
-    const updatedAvailableNotes = availableNotes.map(
-      banknote => {
-        if (banknote.denomination === clickedBanknote.denomination) {
-          const count = banknote.count + 1;
-          return { ...banknote, count };
-        }
-        return banknote;
-      },
-    );
+    const updatedAvailableNotes = availableNotes.map(banknote => {
+      if (banknote.denomination === clickedBanknote.denomination) {
+        const count = banknote.count + 1;
+        return { ...banknote, count };
+      }
+      return banknote;
+    });
     setAvailableNotes(updatedAvailableNotes);
     setDepositedMoney(depositedMoney + clickedBanknote.denomination);
   }
@@ -55,7 +53,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
     const updatedBanknotes = getUpdatedItems<Banknote>(availableNotes, change);
 
     const sumOfMoneyChange = change.reduce(
-      (sum, current) => (sum += (current.denomination * current.count)),
+      (sum, current) => (sum += current.denomination * current.count),
       0,
     );
     const changeOfProducts = countingChange<Product>(
@@ -65,7 +63,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
     );
 
     const sumOfProductChange = changeOfProducts.reduce(
-      (sum, current) => (sum += (current.price * current.count)),
+      (sum, current) => (sum += current.price * current.count),
       0,
     );
 
