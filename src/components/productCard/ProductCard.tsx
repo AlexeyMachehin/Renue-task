@@ -1,6 +1,6 @@
 import { Card, CardContent, CardMedia } from '@mui/material';
 import FullscreenToggler from '../fullscreenToggler/FullscreenToggler';
-import { normalizeWords } from '../../utils/normalizeWords';
+import { normalizeWords } from './utils/normalizeWords';
 import { Product } from '../../types/products';
 import classes from './productCard.module.css';
 interface ProductCardProps {

@@ -6,6 +6,8 @@ import { Product } from '../../types/products';
 import { Banknote, BanknotesOmitCount } from '../../types/banknote';
 import { availableBanknotesForChange } from '../../mockData/availableBanknotesForChange';
 import classes from './userBar.module.css';
+import { countingChange } from './utils/countingChange';
+import { getUpdatedItems } from './utils/getUpdatedItems';
 interface UserBarProps {
   products: Product[];
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
@@ -21,7 +23,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
   const [productChange, setProductChange] = useState<Product[]>([]);
   const [changeAlert, setChangeAlert] = useState<string | number>('');
 
-  function reset() {
+  function reset(): void {
     setMoneyChange([]);
     setProductChange([]);
     setChangeAlert('');
@@ -29,7 +31,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
 
   function handleClickBanknote(clickedBanknote: BanknotesOmitCount): void {
     const updatedAvailableNotes = availableNotes.map(
-      (banknote: Banknote) => {
+      banknote => {
         if (banknote.denomination === clickedBanknote.denomination) {
           const count = banknote.count + 1;
           return { ...banknote, count };
@@ -39,47 +41,6 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
     );
     setAvailableNotes(updatedAvailableNotes);
     setDepositedMoney(depositedMoney + clickedBanknote.denomination);
-  }
-
-  function countingChange<T extends { count: number }>(
-    balance: number,
-    updatedAvailableNotes: T[],
-    field: keyof T,
-  ): T[] {
-    const result = [];
-    if (balance > 0) {
-      for (let i = 0; i < updatedAvailableNotes.length; i++) {
-        const value = updatedAvailableNotes[i][field] as number;
-        let countBanknotes = updatedAvailableNotes[i].count;
-        let countBanknotesOfChange = 0;
-        while (balance - value >= 0 && countBanknotes > 0) {
-          balance -= value;
-          countBanknotes = countBanknotes - 1;
-          countBanknotesOfChange++;
-        }
-        if (countBanknotesOfChange) {
-          result.push({
-            ...updatedAvailableNotes[i],
-            count: countBanknotesOfChange,
-          });
-        }
-      }
-    }
-
-    return result;
-  }
-
-  function getUpdatedItems<T extends { count: number; id: number }>(
-    currentItems: T[],
-    [...change]: T[],
-  ): T[] {
-    return currentItems.map(currentItem => {
-      const t = change.find(item => item.id == currentItem.id);
-      if (t) {
-        currentItem.count -= t.count;
-      }
-      return currentItem;
-    });
   }
 
   function handleClickGetChange(): void {
@@ -146,9 +107,9 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
             boughtProduct={boughtProduct}
           />
           <ButtonsPanel
-            handleClickBanknote={handleClickBanknote}
             depositedMoney={depositedMoney}
             products={products}
+            handleClickBanknote={handleClickBanknote}
             handleClickProduct={handleClickProduct}
             handleClickGetChange={handleClickGetChange}
           />

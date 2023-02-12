@@ -19,14 +19,14 @@ export default function ChangeDisplay({
       <p> Ваша сдача: </p>
       <div>
         {moneyChange &&
-          moneyChange.map((banknote: Banknote) => (
+          moneyChange.map(banknote => (
             <p key={banknote.id}>
               {`${banknote.denomination} руб.`} X {banknote.count}
             </p>
           ))}
       </div>
       <div>
-        {productChange.map((product: Product) => (
+        {productChange.map(product => (
           <p key={product.id}>
             {product.name} X {product.count}
           </p>

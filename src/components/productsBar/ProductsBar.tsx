@@ -9,7 +9,7 @@ export default function ProductsBar({ products }: ProductsBarProps) {
   return (
     <div className={classes.productsBar}>
       <div className={classes.productsContainer}>
-        {products.map((product: Product) => (
+        {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
