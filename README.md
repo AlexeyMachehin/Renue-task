@@ -1,3 +1,5 @@
+## Вендинговый аппарат
+
 Ссылка на netlify.com: [Vending-machine](https://renue-vending-machine.netlify.app)
 
 ## Описание:
@@ -12,8 +14,10 @@
 * React 
 * Vite
 * Material UI
-* eslint
-* stylelint
+* Eslint
+* Stylelint
+* Fullscreen API
+ 
 
 ***
 
