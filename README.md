@@ -8,7 +8,12 @@
 
 ***
 
-Стек технологий: React, Vite, Material UI, eslint, stylelint
+## Стек технологий: 
+* React 
+* Vite
+* Material UI
+* eslint
+* stylelint
 
 ***
 
