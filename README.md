@@ -8,6 +8,10 @@
 
 ***
 
+Стек технологий: React, Vite, Material UI, eslint, stylelint
+
+***
+
 ## Команды:
 * Старт проекта: npm run preview
 * Сборка проекта: npm run build
