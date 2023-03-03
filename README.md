@@ -1,4 +1,4 @@
-Ссылка на netlify.com: [Renue-vending-machine](https://renue-vending-machine.netlify.app)
+Ссылка на netlify.com: [Vending-machine](https://renue-vending-machine.netlify.app)
 
 ## Описание:
 * В проекте используется библиотека react
