@@ -59,5 +59,6 @@
 ***
 
 Превью:
-![image](https://user-images.githubusercontent.com/99137228/218194305-e958ce35-edcd-4d21-949c-94944000cb1d.png)
+![vendingMachine](https://user-images.githubusercontent.com/99137228/222923613-39a5096d-876e-4054-8044-8f8d10a37b9b.gif)
+
 
