@@ -17,6 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         title={product.name}>
         <FullscreenToggler elementId={product.name.replace(/\s/g, '')} />
       </CardMedia>
+
       <CardContent className={classes.cardContent}>
         <p>{`#${product.id} ${product.name}`}</p>
         <p>{product.weight}</p>
