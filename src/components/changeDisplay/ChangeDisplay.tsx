@@ -1,5 +1,6 @@
 import { Banknote } from '../../types/banknote';
 import { Product } from '../../types/products';
+import classes from './changeDisplay.module.css';
 interface ChangeDisplayProps {
   moneyChange: Banknote[];
   productChange: Product[];
@@ -13,8 +14,8 @@ export default function ChangeDisplay({
 }: ChangeDisplayProps) {
   return (
     <div className={'display'}>
-      <p style={{ color: '#f57c00' }}>
-        Внимание! При отсутствии купюр автомат выдает сдачу товаром!{' '}
+      <p className={classes.changeDisplayTitle}>
+        Внимание! При отсутствии купюр автомат выдает сдачу товаром!
       </p>
       <p> Ваша сдача: </p>
       <div>
@@ -35,8 +36,8 @@ export default function ChangeDisplay({
       <p
         style={
           typeof changeAlert === 'string'
-            ? { color: '#ef5350' }
-            : { color: '#00bfa5' }
+            ? { color: 'var(--no-change-color)' }
+            : { color: 'var(--get-change-button-color)' }
         }>
         {changeAlert && changeAlert}
       </p>

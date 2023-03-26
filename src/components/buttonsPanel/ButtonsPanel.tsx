@@ -3,6 +3,11 @@ import Tooltip from '@mui/material/Tooltip';
 import { Product } from '../../types/products';
 import { availableBanknotesForEnter } from '../../mockData/availableBanknotesForEnter';
 import { BanknotesOmitCount } from '../../types/banknote';
+import {
+  buttonsTitle,
+  isProductButtonDisabled,
+  tooltipTitle,
+} from './buttonsPanelUtils';
 import classes from './buttonsPanel.module.css';
 interface ButtonsPanelProps {
   depositedMoney: number;
@@ -36,29 +41,15 @@ export default function ButtonsPanel({
       </div>
       <div>
         <div className={classes.buttons}>
-          <p className={classes.buttonsTitle}>
-            {depositedMoney
-              ? 'Выберите товар:'
-              : 'Пополните баланс, затем выберите товар'}
-          </p>
+          <p className={classes.buttonsTitle}>{buttonsTitle(depositedMoney)}</p>
           {products.map(product => (
             <Tooltip
               key={product.id}
-              title={`${product.name} ${
-                !product.count ? ' - Товара нет в наличии' : ''
-              } ${
-                product.price > depositedMoney && product.count > 0
-                  ? ' - Недостаточно средств, пополните баланс'
-                  : ''
-              }`}>
+              title={tooltipTitle(depositedMoney, product)}>
               <span>
                 <Button
                   variant="contained"
-                  disabled={
-                    !depositedMoney ||
-                    !product.count ||
-                    product.price > depositedMoney
-                  }
+                  disabled={isProductButtonDisabled(depositedMoney, product)}
                   onClick={() => handleClickProduct(product)}>
                   {product.id}
                 </Button>

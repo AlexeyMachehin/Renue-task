@@ -28,7 +28,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         ])}`}</p>
         <p
           style={{
-            color: `${product.count === 0 && 'red'}`,
+            color: `${product.count === 0 && 'var(--no-change-color)'}`,
           }}>{`Остаток: ${product.count} шт.`}</p>
       </CardContent>
     </Card>
