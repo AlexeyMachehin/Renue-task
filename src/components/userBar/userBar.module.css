@@ -1,14 +1,14 @@
-.userBar {
-  width: 50%;
-  padding: 30px;
-  overflow-y: auto;
-}
-
 .userBarContainer {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   height: 100%;
+}
+
+.userBar {
+  width: 50%;
+  padding: 30px;
+  overflow-y: auto;
 }
 
 .userBarPanel {
@@ -21,15 +21,4 @@
   border-radius: 10px;
   box-shadow: var(--user-bar-shadow);
   background-color: var(--user-bar-background-color);
-}
-
-@media screen and (max-width: 580px) {
-  .userBar {
-    width: 100%;
-    overflow-y: visible;
-  }
-
-  .userBarPanel {
-    min-width: 310px;
-  }
 }

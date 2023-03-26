@@ -1,3 +1,7 @@
+@import url('../components/vendingMachine/vendingMachine.module.css');
+@import url('../components/userBar/userBar.module.css');
+@import url('../components/productsBar/productsBar.module.css');
+
 #root {
   height: 100%;
   width: 100%;
@@ -24,4 +28,37 @@
 .display p {
   margin-bottom: 10px;
   font-family: 'Press Start 2P', sans-serif;
+}
+
+@media screen and (max-width: 580px) {
+  .userBar {
+    width: 100%;
+    overflow-y: visible;
+  }
+
+  .userBarPanel {
+    min-width: 310px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .productsBar {
+    width: 100%;
+    overflow-y: visible;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .vendingMachineWrapper {
+    flex-wrap: wrap;
+    overflow: auto;
+  }
+
+  .userBar {
+    order: 1;
+  }
+
+  .productsBar {
+    order: 2;
+  }
 }
