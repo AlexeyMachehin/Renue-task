@@ -7,7 +7,7 @@ interface ProductsBarProps {
 
 export default function ProductsBar({ products }: ProductsBarProps) {
   return (
-    <div className={classes.productsBar}>
+    <div className="productsBar">
       <div className={classes.productsContainer}>
         {products.map(product => (
           <ProductCard key={product.id} product={product} />

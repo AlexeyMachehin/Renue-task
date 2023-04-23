@@ -5,9 +5,4 @@
   background-color: var(--vending-machine-background-color);
 }
 
-@media screen and (max-width: 580px) {
-  .vendingMachineWrapper {
-    flex-wrap: wrap-reverse;
-    overflow: auto;
-  }
-}
+

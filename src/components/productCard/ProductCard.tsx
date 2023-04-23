@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Card, CardContent, CardMedia } from '@mui/material';
 import FullscreenToggler from '../fullscreenToggler/FullscreenToggler';
 import { normalizeWords } from './utils/normalizeWords';
@@ -7,7 +8,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className={classes.productCard} key={product.id}>
       <CardMedia
@@ -17,6 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         title={product.name}>
         <FullscreenToggler elementId={product.name.replace(/\s/g, '')} />
       </CardMedia>
+
       <CardContent className={classes.cardContent}>
         <p>{`#${product.id} ${product.name}`}</p>
         <p>{product.weight}</p>
@@ -27,9 +29,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         ])}`}</p>
         <p
           style={{
-            color: `${product.count === 0 && 'red'}`,
+            color: `${product.count === 0 && 'var(--no-change-color)'}`,
           }}>{`Остаток: ${product.count} шт.`}</p>
       </CardContent>
     </Card>
   );
 }
+
+export default memo(ProductCard);

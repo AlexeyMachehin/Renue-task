@@ -5,9 +5,9 @@ import ButtonsPanel from '../buttonsPanel/ButtonsPanel';
 import { Product } from '../../types/products';
 import { Banknote, BanknotesOmitCount } from '../../types/banknote';
 import { availableBanknotesForChange } from '../../mockData/availableBanknotesForChange';
-import classes from './userBar.module.css';
 import { countingChange } from './utils/countingChange';
 import { getUpdatedItems } from './utils/getUpdatedItems';
+import classes from './userBar.module.css';
 interface UserBarProps {
   products: Product[];
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
@@ -33,10 +33,13 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
     const updatedAvailableNotes = availableNotes.map(banknote => {
       if (banknote.denomination === clickedBanknote.denomination) {
         const count = banknote.count + 1;
+
         return { ...banknote, count };
       }
+
       return banknote;
     });
+
     setAvailableNotes(updatedAvailableNotes);
     setDepositedMoney(depositedMoney + clickedBanknote.denomination);
   }
@@ -56,6 +59,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
       (sum, current) => (sum += current.denomination * current.count),
       0,
     );
+
     const changeOfProducts = countingChange<Product>(
       depositedMoney - sumOfMoneyChange,
       products,
@@ -87,6 +91,7 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
 
   function handleClickProduct(product: Product): void {
     reset();
+
     const updatedProducts = getUpdatedItems(products, [
       { ...product, count: 1 },
     ]);
@@ -97,9 +102,9 @@ export default function UserBar({ products, setProducts }: UserBarProps) {
   }
 
   return (
-    <div className={classes.userBar}>
+    <div className="userBar">
       <div className={classes.userBarContainer}>
-        <div className={classes.userBarPanel}>
+        <div className="userBarPanel">
           <BalanceDisplay
             depositedMoney={depositedMoney}
             boughtProduct={boughtProduct}
