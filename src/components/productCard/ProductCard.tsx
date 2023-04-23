@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Card, CardContent, CardMedia } from '@mui/material';
 import FullscreenToggler from '../fullscreenToggler/FullscreenToggler';
 import { normalizeWords } from './utils/normalizeWords';
@@ -7,7 +8,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className={classes.productCard} key={product.id}>
       <CardMedia
@@ -34,3 +35,5 @@ export default function ProductCard({ product }: ProductCardProps) {
     </Card>
   );
 }
+
+export default memo(ProductCard);

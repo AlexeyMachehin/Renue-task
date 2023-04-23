@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Banknote } from '../../types/banknote';
 import { Product } from '../../types/products';
 import classes from './changeDisplay.module.css';
@@ -6,8 +7,7 @@ interface ChangeDisplayProps {
   productChange: Product[];
   changeAlert: string | number;
 }
-
-export default function ChangeDisplay({
+function ChangeDisplay({
   moneyChange,
   productChange,
   changeAlert,
@@ -44,3 +44,5 @@ export default function ChangeDisplay({
     </div>
   );
 }
+
+export default memo(ChangeDisplay);
